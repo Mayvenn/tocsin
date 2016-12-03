@@ -40,7 +40,7 @@ Anytime you want to capture thrown exception just use `try...catch` with `tocsin
 
 `tocsin/notify` options are a pass-through to [clj-bugsnag](https://github.com/wunderlist/clj-bugsnag) with the following changes:
 
- - `:ex-data` sent via clj-bugsnag no longer has a en-dash (ex–data) but just a hypen (ex-data). Because it's harder to override clj-bugsnag's key. 
+ - `:ex-data` sent via clj-bugsnag no longer has a en-dash (ex–data) but just a hyphen (ex-data). Because it's harder to override clj-bugsnag's key. 
  - `:unruly-ex-data-keys` can be provided as a vector of keys to automatically dissoc from `:ex-data`. Defaults to `#{:type :schema :system :component}` which correspond to [stuart-sierra's component](https://github.com/stuartsierra/component) exceptions that fail to start.
  - If `:ex-data` cannot be converted to json properly (probably because java classes are embedded in it), then tocsin will use `prn-str` on `:ex-data` and send the string through as a fallback.
  - `:notify-release-stages` defaults to `#{"production" "staging" "acceptance"}`
