@@ -43,4 +43,5 @@
   ([exception options]
    (let [opts (merge default-options options)]
      (when (should-notify? opts)
-       (bugsnag/notify exception (merge opts (force-meta-option opts exception)))))))
+       (bugsnag/notify exception (merge opts (force-meta-option opts exception))))
+     exception)))
