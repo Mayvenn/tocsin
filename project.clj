@@ -1,4 +1,4 @@
-(defproject tocsin "0.1.4"
+(defproject tocsin "0.1.5-SNAPSHOT"
   :description "Sends exceptions"
   :url "https://github.com/Mayvenn/tocsin"
   :license {:name "Eclipse Public License"
