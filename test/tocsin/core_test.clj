@@ -18,3 +18,11 @@
     (is (.contains (get-in (force-meta-option default-options (ex-info "oh no" {:a (fn [] 1)}))
                             [:meta "ex–data"])
                     ":a"))))
+
+
+(deftest ensures-api-key-and-environment-are-present
+  (let [e (Exception. "An exception")]
+    (is (thrown? AssertionError (notify e {:environment "development"}))
+        "api-key should be present")
+    (is (thrown? AssertionError (notify e {:api-key "api-key"}))
+        "environment should be present")))

@@ -38,10 +38,11 @@
 (defn notify
   "Main interface for manually reporting exceptions.
    Suggested critical options: :api-key, :environment"
-  ([exception]
-   (notify exception nil))
-  ([exception options]
-   (let [opts (merge default-options options)]
-     (when (should-notify? opts)
-       (bugsnag/notify exception (merge opts (force-meta-option opts exception))))
-     exception)))
+  [exception {:keys [api-key environment] :as options}]
+  (assert (seq environment) "environment should be provided")
+  (assert (seq api-key) "api-key should be provided")
+
+  (let [opts (merge default-options options)]
+    (when (should-notify? opts)
+      (bugsnag/notify exception (merge opts (force-meta-option opts exception))))
+    exception))
