@@ -16,7 +16,4 @@ jobs:
           paths:
             - ~/.m2
           key: tocsin-clojure-{{ checksum "project.clj" }}
-      - run: lein do test, uberjar
-      - store_artifacts: # upload test results for display in Test Summary
-          path: target/uberjar/tocsin-clojure.jar
-          destination: uberjar
+      - run: lein do test
