@@ -5,7 +5,7 @@
             [clojure.java.shell :refer [sh]]
             [clj-http.client :as http]
             [environ.core :refer [env]]
-            [clojure.data.json :as json]
+            [cheshire.core :as json]
             [clojure.repl :as repl]
             [clojure.string :as string]
             [clojure.walk :as walk]))
