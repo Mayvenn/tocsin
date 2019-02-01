@@ -1,5 +1,5 @@
 (ns tocsin.core
-  (:require [clj-bugsnag.core :as bugsnag]
+  (:require [tocsin.clj-bugsnag :as bugsnag]
             [cheshire.core :refer [generate-string]])
   (:import [com.fasterxml.jackson.core JsonGenerationException]))
 

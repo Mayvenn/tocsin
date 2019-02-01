@@ -5,7 +5,9 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [cheshire "5.8.0"]
-                 [clj-bugsnag "0.2.9"]]
+                 [clj-stacktrace "0.2.8"]
+                 [clj-http "2.0.0"]
+                 [environ "1.0.2"]]
   :profiles
   {:dev {:source-paths ["dev"]
          :dependencies [[diff-eq "0.2.5"]

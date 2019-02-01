@@ -1,6 +1,7 @@
 (ns tocsin.core-test
   (:require [clojure.test :refer :all]
-            [tocsin.core :refer :all]))
+            [tocsin.core :refer :all]
+            [tocsin.clj-bugsnag :refer [exception->json]]))
 
 (deftest notifies-bugsnag-with-the-appropriate-notify-environments
   (is (should-notify? nil))
@@ -19,6 +20,23 @@
                             [:meta "ex–data"])
                     ":a"))))
 
+(deftest send-all-exceptions
+  (let [exceptions (-> (ex-info "Hi" {} (ex-info "LO" {} (Exception.)))
+                       (exception->json {})
+                       :events
+                       first
+                       :exceptions)]
+    (is (= [{:errorClass "clojure.lang.ExceptionInfo"
+             :message    "Hi"}
+            {:errorClass "clojure.lang.ExceptionInfo"
+             :message    "LO"}
+            {:errorClass "java.lang.Exception"
+             :message    nil}]
+           (map #(select-keys % [:message :errorClass])
+                exceptions))
+        "All exceptions to root cause are serialized")
+    (is (every? (complement nil?) (map :stacktrace exceptions))
+        "All exceptions include a stacktrace")))
 
 (deftest ensures-api-key-and-environment-are-present
   (let [e (Exception. "An exception")]
