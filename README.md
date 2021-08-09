@@ -7,7 +7,7 @@ Send exceptions to bugsnag.
 Add to your dependencies in your `project.clj`:
 
 ```clojure
-[tocsin "0.1.1"]
+[tocsin "0.2.1"]
 ```
 
 # Usage
